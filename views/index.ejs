@@ -1,0 +1,33 @@
+<%- include('shared/header', {title: title}); %>
+  <div class="container">
+    <section class="section">
+      <div class="notification is-success has-text-centered">
+        Compra ahora tu subscripción mensual a Platzi Store 
+        <a class="button is-inline is-primary is-inverted" href="/subscription">Aqui</a>.
+      </div>
+      <div class="row columns">
+        <!-- Products -->
+        <% for(var i=0; i < products.length; i++) { %>
+        <div class="column is-one-quarter">
+          <a href="/product/<%= i %>">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3" style='background-image:url("/images/<%= products[i].image %>"); background-size: cover;'>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4"><%= products[i].name %></p>
+                    <p class="subtitle is-6">$<%= products[i].price.toFixed(2) %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% } %>
+      </div>
+    </section>
+  </div>
+<%- include('shared/footer'); %>

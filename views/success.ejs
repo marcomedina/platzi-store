@@ -1,0 +1,12 @@
+<%- include('shared/header', {title: title}); %>
+  <div class="container">
+    <figure class="highlight">
+      <pre id="json">
+      </pre>
+  </div>
+  <script>
+      const data = JSON.parse(<%-JSON.stringify(details)%>);
+      const elem = document.getElementById('json');
+      elem.innerHTML = prettyPrintJson.toHtml(data);
+  </script>
+<%- include('shared/footer'); %>
