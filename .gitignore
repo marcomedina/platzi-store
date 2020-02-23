@@ -105,3 +105,4 @@ dist
 >>>>>>> f1d5e808afd74750a5cd2d224fc92ed8bc713276
 
 .DS_Store
+database.sqlite3

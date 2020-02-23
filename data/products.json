@@ -1,6 +1,0 @@
-[
-  { "name": "Playera", "price": 100, "image": "tshirt.png" },
-  { "name": "Gorra", "price": 40, "image": "hat.png" },
-  { "name": "Botella de Agua", "price": 60, "image": "bottle.png" },
-  { "name": "Carcasa iPhone", "price": 30, "image": "case.png" }
-]

@@ -9,7 +9,7 @@
         <!-- Products -->
         <% for(var i=0; i < products.length; i++) { %>
         <div class="column is-one-quarter">
-          <a href="/product/<%= i %>">
+          <a href="/product/<%= products[i].id %>">
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3" style='background-image:url("/images/<%= products[i].image %>"); background-size: cover;'>

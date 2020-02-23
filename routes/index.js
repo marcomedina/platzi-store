@@ -1,28 +1,34 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-//data
-var products = require('../data/products.json');
+//Database
+var db = require("../models");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
-    title: 'Platzi Store',
-    products: products
+router.get("/", function(req, res, next) {
+  return db.Product.findAll()
+    .then(products => {
+      res.render("index", {
+        title: "Platzi Store",
+        products: products
+      });
+    })
+    .catch(err => {
+      console.log("There was an error querying products", JSON.stringify(err));
+      return res.send(err);
+    });
+});
+
+router.get("/subscription", function(req, res, next) {
+  res.render("subscription", {
+    title: "Platzi Store"
   });
 });
 
-router.get('/subscription', function(req, res, next) {
-  res.render('subscription', {
-    title: 'Platzi Store',
-    products: products
-  });
-});
-
-router.post('/success', function(req, res, next) {
-  res.render('success', {
-    title: 'Platzi Store',
-    details: req.body.details 
+router.post("/success", function(req, res, next) {
+  res.render("success", {
+    title: "Platzi Store",
+    details: req.body.details
   });
 });
 
