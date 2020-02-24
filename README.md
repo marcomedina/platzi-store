@@ -10,4 +10,4 @@ Curso de pagos en linea - Platzi 💚
 
 `$ DEBUG=platzi-store:* npm start`
 
-El proyecto correr localmente en [localhost:3000](http://localhost:3000/)
+El proyecto corre localmente en [localhost:3000](http://localhost:3000/)
