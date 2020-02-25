@@ -26,9 +26,26 @@ router.get("/subscription", function(req, res, next) {
 });
 
 router.post("/success", function(req, res, next) {
-  res.render("success", {
-    title: "Platzi Store",
-    details: req.body.details
+  const orderDetails = req.body.details;
+  return db.Order.create({
+    paypalId: orderDetails.id,
+    name: orderDetails.payer.name.given_name,
+    status: orderDetails.status,
+    email: orderDetails.payer.email_address,
+    meta: JSON.stringify(orderDetails)
+  })
+  .then(order => {
+    res.render("success", {
+      title: "Platzi Store",
+      details: req.body.details
+    });
+  })
+  .catch(err => {
+    console.log(
+      "***There was an error creating an order",
+      JSON.stringify(contact)
+    );
+    return res.status(400).send(err);
   });
 });
 
