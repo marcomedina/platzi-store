@@ -12,7 +12,7 @@
                 <div class="media">
                   <div class="media-content">
                     <p class="title is-4">Subscripción a Platzi Store</p>
-                    <p class="subtitle is-6">$ [Precio de la Subscripción] </p>
+                    <p class="subtitle is-6">$ 100 </p>
                   </div>
                 </div>
               </div>
@@ -23,10 +23,35 @@
 							<label class="label">Subscribete:</label>
 						<div class="control">
               <!-- PP Smart Button Container HERE! -->
+              <div id="paypal-button-container"></div>
 						</div>
 					</div>
 				</div>
 			</div>
     </div>
   </div>
+
+  <script>
+    paypal.Buttons({
+
+createSubscription: function(data, actions) {
+
+  return actions.subscription.create({
+
+    'plan_id': 'P-5GG91992EM7522231LZKZOBI'
+
+  });
+
+},
+
+
+onApprove: function(data, actions) {
+
+  alert('You have successfully created subscription ' + data.subscriptionID);
+
+}
+
+
+}).render('#paypal-button-container');
+  </script>
 <%- include('shared/footer'); %>

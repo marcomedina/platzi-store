@@ -23,10 +23,43 @@
 							<label class="label">Pago:</label>
 						<div class="control">
               <!-- PP Smart Button Container HERE! -->
+              <div id="paypal-button-container"></div>
+              <form id="paypal-form" action="/success" method="POST">
+                <input type="hidden" name="details" id="details-input"/>
+              </form>
 						</div>
 					</div>
 				</div>
 			</div>
     </div>
   </div>
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '<%= product.price %>'
+          }
+        }]
+      });
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        // alert('Transaction completed by ' + details.payer.name.given_name);
+        var paypalForm = document.getElementById('paypal-form');
+        var detailsInput = document.getElementById('details-input');
+
+        var jsonDetails = JSON.stringify(details);
+
+        detailsInput.value = jsonDetails;
+        paypalForm.submit();
+      });
+      //alert('Transacción Creada');
+    }
+    }).render('#paypal-button-container');
+    // This function displays Smart Payment Buttons on your web page.
+  </script>
 <%- include('shared/footer'); %>
